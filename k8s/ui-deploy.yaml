@@ -1,15 +1,15 @@
-apiVersion: apps/v1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name:  destination
+  name:  bee-ui
   labels:
-    run:  destination
+    run:  bee-ui
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run:  destination
+      run:  bee-ui
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -18,19 +18,21 @@ spec:
   template:
     metadata:
       labels:
-        run:  destination
+        run:  bee-ui
     spec:
       containers:
-      - image:  beetravels/destination:v0.0.1
+      - image:  beetravels/ui:v0.0.1
         imagePullPolicy: Always
-        name:  destination
+        name:  bee-ui
         env:
           - name: PORT
-            value: "4000"
-          - name: HOST_IP
-            value: destination
-          - name: SCHEME
-            value: http
+            value: "9000"
+          - name: DESTINATION_URL
+            value: http://destination
+          - name: HOTEL_URL
+            value: http://hotel
+          - name: CURRENCY_EXCHANGE_URL
+            value: http://currencyexchange
         resources:
           limits:
             cpu: 200m
@@ -39,4 +41,3 @@ spec:
             cpu: 200m
             memory: 256Mi
       restartPolicy: Always
-      

@@ -1,15 +1,15 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name:  bee-ui
+  name:  currencyexchange
   labels:
-    run:  bee-ui
+    run:  currencyexchange
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run:  bee-ui
+      run:  currencyexchange
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -18,17 +18,19 @@ spec:
   template:
     metadata:
       labels:
-        run:  bee-ui
+        run:  currencyexchange
     spec:
       containers:
-      - image:  moficodes/bee-ui:v0.0.8
+      - image:  beetravels/currencyexchange:v0.0.1
         imagePullPolicy: Always
-        name:  bee-ui
+        name: currencyexchange
         env:
           - name: PORT
-            value: "3000"
-          - name: DESTINATION_URL
-            value: http://destination-kn.default.svc.cluster.local
+            value: "4001"
+          - name: HOST_IP
+            value: currencyexchange
+          - name: SCHEME
+            value: http
         resources:
           limits:
             cpu: 200m
@@ -37,3 +39,4 @@ spec:
             cpu: 200m
             memory: 256Mi
       restartPolicy: Always
+      
