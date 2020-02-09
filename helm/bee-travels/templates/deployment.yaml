@@ -1,0 +1,42 @@
+{{- define "bee-travels.deployment" }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .name }}
+  labels:
+    run: {{ .name }}
+    app: {{ .name }}
+    version: {{ .version }}
+spec:
+  replicas: {{ .replicas }}
+  selector:
+    matchLabels:
+      run:  {{ .name }}
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        run:  {{ .name }}
+    spec:
+      containers:
+      - image:  {{ .image }}:{{ .tag }}
+        imagePullPolicy: Always
+        name: {{ .name }}
+        env:
+        {{- range $key, $value := .envs }}
+          - name: {{ $key | quote}}
+            value: {{ $value | quote}}
+        {{- end }}
+        resources:
+          limits:
+            cpu: {{ .limits.cpu }}
+            memory: {{ .limits.memory }}
+          requests:
+            cpu: {{ .requests.cpu }}
+            memory: {{ .requests.memory }}
+      restartPolicy: Always
+{{- end}}

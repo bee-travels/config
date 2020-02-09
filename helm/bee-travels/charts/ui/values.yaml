@@ -1,0 +1,27 @@
+deployment:
+  name: bee-ui
+  version: v1
+  replicas: 1
+  image: beetravels/ui
+  tag: v0.0.1
+  envs: 
+    PORT: 9000
+    DESTINATION_URL: http://destination
+    HOTEL_URL: http://hotel
+    CURRENCY_EXCHANGE_URL: http://currencyexchange
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 200m
+    memory: 256Mi
+service:
+  name: bee-ui
+  type: ClusterIP
+  port: 80
+  protocol: TCP
+  targetPort: 9000
+ingress:
+  name: bee-ui
+  secret: mofi-iks-5290c8c8e5797924dc1ad5d1b85b37c0-0000
+  host: mofi-iks-5290c8c8e5797924dc1ad5d1b85b37c0-0000.us-east.containers.appdomain.cloud
