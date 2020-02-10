@@ -1,7 +1,13 @@
 Thank you for installing {{ .Chart.Name }}.
 
+Bee Travels is a microservice based application. This application shows how to use cloud native technologies such as Kubernetes, Docker, Helm, Istio, Knative, Kabanero and many more.
+
 Your release is named {{ .Release.Name }}.
 
 To learn more about the release, try:
 
   $ helm status {{ .Release.Name }}
+
+To access your application visit. It can take some time for all the services to be available. So if the page does not load immidiately, refresh and try again.
+
+  http://{{ .Values.ui.ingress.host }}
