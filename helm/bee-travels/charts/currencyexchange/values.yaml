@@ -3,7 +3,7 @@ deployment:
   version: v1
   replicas: 1
   image: beetravels/currencyexchange
-  tag: v0.0.1
+  tag: v0.0.2
   envs:
     PORT: 4001
     HOST_IP: currencyexchange
