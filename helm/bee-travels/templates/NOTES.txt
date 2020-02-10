@@ -8,6 +8,9 @@ To learn more about the release, try:
 
   $ helm status {{ .Release.Name }}
 
+To see what was installed with this helm install, try:
+  $ kubectl get po,svc,deploy
+
 To access your application visit. It can take some time for all the services to be available. So if the page does not load immidiately, refresh and try again.
 
   http://{{ .Values.ui.ingress.host }}
