@@ -3,7 +3,6 @@ deployment:
   version: v1
   replicas: 1
   image: beetravels/ui
-  tag: v0.0.2
   envs: 
     PORT: 9000
     DESTINATION_URL: http://destination
