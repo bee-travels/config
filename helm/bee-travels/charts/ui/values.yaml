@@ -22,5 +22,3 @@ service:
   targetPort: 9000
 ingress:
   name: bee-ui
-  secret: mofi-iks-5290c8c8e5797924dc1ad5d1b85b37c0-0000
-  host: mofi-iks-5290c8c8e5797924dc1ad5d1b85b37c0-0000.us-east.containers.appdomain.cloud

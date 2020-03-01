@@ -37,11 +37,20 @@ if [ ! -z $INGRESS ]; then
       sed -i "" "s#${ingress}#${INGRESS}#g" k8s/$filename
     fi
   done
+
+  echo "Updating helm ingress and secret"
+  filename="values.yaml"
+  ingress=$(cat helm/bee-travels/${filename} | grep host | awk '{print $2}')
+  sed -i "" "s#${ingress}#${INGRESS}#g" helm/bee-travels/$filename
 fi
 
 if [ ! -z $SECRET ]; then
   filename=$(ls -1 k8s/ | grep ingress)
   secret=$(cat k8s/$filename | grep secretName | cut -d ":" -f 2)
   sed -i "" "s#${secret}# ${SECRET}#g" k8s/$filename
+
+  filename="values.yaml"
+  secret=$(cat helm/bee-travels/${filename} | grep secret | awk '{print $2}')
+  sed -i "" "s#${secret}#${SECRET}#g" helm/bee-travels/$filename
 fi
 
