@@ -21,7 +21,7 @@ spec:
         run:  destination
     spec:
       containers:
-      - image:  beetravels/destination:v0.0.1
+      - image:  beetravels/destination:v0.0.2
         imagePullPolicy: Always
         name:  destination
         env:

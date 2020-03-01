@@ -21,7 +21,7 @@ spec:
         run:  bee-ui
     spec:
       containers:
-      - image:  beetravels/ui:v0.0.1
+      - image:  beetravels/ui:v0.0.2
         imagePullPolicy: Always
         name:  bee-ui
         env:

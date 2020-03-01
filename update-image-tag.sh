@@ -26,6 +26,19 @@ do
   sed -i "" "s#beetravels/${image}:${PREV}#beetravels/${image}:${TAG}#g" k8s/$filename
 done
 
+echo "Update helm yaml"
+filename="values.yaml"
+tag=$(cat helm/bee-travels/${filename} | grep tag | awk '{print $2}')
+sed -i "" "s#${tag}#${TAG}#g" helm/bee-travels/$filename
+
+echo "Update helm version"
+filename="Chart.yaml"
+version=$(cat helm/bee-travels/${filename} | grep version | awk '{print $2}')
+a=( ${version//./ } )
+((a[2]++))
+VERSION=${a[0]}.${a[1]}.${a[2]}
+sed -i "" "s#version: ${version}#version: ${VERSION}#g" helm/bee-travels/$filename
+
 if [ ! -z $INGRESS ]; then
   echo "Updating k8s ingress and secret"
   filename=$(ls -1 k8s/ | grep ingress)
