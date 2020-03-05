@@ -36,6 +36,13 @@ TODO
 
 ### OpenShift
 
+#### Prerequisites
+
+* Provisioned OpenShift Cluster
+* [OC CLI](https://www.okd.io/download.html)
+
+#### Deployment
+
 From your OpenShift dashboard, locate your login command as seen in the below screenshot. The login command should look like this: `oc login --token=<YOUR_TOKEN> --server=<YOUR_SERVER>`
 
 
