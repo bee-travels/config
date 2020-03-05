@@ -28,7 +28,21 @@ TODO
 
 ### K8s
 
-TODO
+#### Prerequisites
+
+* Provisioned Kubernetes Cluster
+* [kubectl CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+* Set the `KUBECONFIG` environment variable to your cluster's kubeconfig file
+
+#### Deployment
+
+Run the following command:
+
+```sh
+git clone https://github.com/bee-travels/config.git
+cd config
+./deploy-k8s.sh
+```
 
 ### Knative
 
@@ -39,7 +53,7 @@ TODO
 #### Prerequisites
 
 * Provisioned OpenShift Cluster
-* [OC CLI](https://www.okd.io/download.html)
+* [oc CLI](https://www.okd.io/download.html)
 
 #### Deployment
 
