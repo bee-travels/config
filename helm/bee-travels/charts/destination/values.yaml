@@ -3,7 +3,6 @@ deployment:
   version: v1
   replicas: 1
   image: beetravels/destination
-  tag: v0.0.2
   envs:
     PORT: 4000
     HOST_IP: destination

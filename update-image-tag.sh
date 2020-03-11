@@ -28,6 +28,19 @@ do
   sed -i "" "s#beetravels/${image}:${PREV}#beetravels/${image}:${TAG}#g" k8s/$filename
 done
 
+echo "Update helm yaml"
+filename="values.yaml"
+tag=$(cat helm/bee-travels/${filename} | grep tag | awk '{print $2}')
+sed -i "" "s#${tag}#${TAG}#g" helm/bee-travels/$filename
+
+echo "Update helm version"
+filename="Chart.yaml"
+version=$(cat helm/bee-travels/${filename} | grep version | awk '{print $2}')
+a=( ${version//./ } )
+((a[2]++))
+VERSION=${a[0]}.${a[1]}.${a[2]}
+sed -i "" "s#version: ${version}#version: ${VERSION}#g" helm/bee-travels/$filename
+
 if [ ! -z $INGRESS ]; then
   echo "Updating k8s ingress and secret"
   filename=$(ls -1 k8s/ | grep ingress)
@@ -39,11 +52,20 @@ if [ ! -z $INGRESS ]; then
       sed -i "" "s#${ingress}#${INGRESS}#g" k8s/$filename
     fi
   done
+
+  echo "Updating helm ingress and secret"
+  filename="values.yaml"
+  ingress=$(cat helm/bee-travels/${filename} | grep host | awk '{print $2}')
+  sed -i "" "s#${ingress}#${INGRESS}#g" helm/bee-travels/$filename
 fi
 
 if [ ! -z $SECRET ]; then
   filename=$(ls -1 k8s/ | grep ingress)
   secret=$(cat k8s/$filename | grep secretName | cut -d ":" -f 2)
   sed -i "" "s#${secret}# ${SECRET}#g" k8s/$filename
+
+  filename="values.yaml"
+  secret=$(cat helm/bee-travels/${filename} | grep secret | awk '{print $2}')
+  sed -i "" "s#${secret}#${SECRET}#g" helm/bee-travels/$filename
 fi
 

@@ -21,7 +21,7 @@ spec:
         run:  hotel
     spec:
       containers:
-      - image:  beetravels/hotel:v0.0.1
+      - image:  beetravels/hotel:v0.0.2
         imagePullPolicy: Always
         name:  hotel
         env:

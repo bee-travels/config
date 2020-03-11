@@ -9,7 +9,7 @@ def deploy():
 	if data['version'] == 'v1':
 		if data['deployment'] == 'k8s':
 			print('Deploying k8s')
-			call('./../deploy-k8s.sh')
+			call('./deploy-k8s.sh')
 			return jsonify({"success":"Successfully deployed"})
 		elif data['deployment'] == 'openshift':
 			print('Deploying openshift')
