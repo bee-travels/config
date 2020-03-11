@@ -7,7 +7,7 @@ metadata:
 spec:
   selector:
     run:  hotel
-  type:  NodePort
+  type:  ClusterIP
   ports:
   - port: 80
     protocol: TCP
