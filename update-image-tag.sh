@@ -3,6 +3,8 @@ TAG=""
 INGRESS=""
 SECRET=""
 
+#delete this
+
 while getopts t:i:s: option
 do
   case "${option}"
