@@ -153,26 +153,26 @@
         <div class="inline fields">
           <div class="field">
             <div class="ui radio checkbox">
-              <input type="radio" id="carrrentalnode" name="carrrental" value="carrrentalnode" disabled="true">
-              <label for="carrrentalnode">Node.js (In Development)</label>
+              <input type="radio" id="carrentalnode" name="carrental" value="carrentalnode" disabled="true">
+              <label for="carrentalnode">Node.js (In Development)</label>
             </div>
           </div>
           <div class="field">
             <div class="ui radio checkbox">
-              <input type="radio" id="carrrentalpython" name="carrrental" value="carrrentalpython" disabled="true">
-              <label for="carrrentalpython">Python (In Development)</label>
+              <input type="radio" id="carrentalpython" name="carrental" value="carrentalpython" disabled="true">
+              <label for="carrentalpython">Python (In Development)</label>
             </div>
           </div>
           <div class="field">
             <div class="ui radio checkbox">
-              <input type="radio" id="carrrentaljava" name="carrrental" value="carrrentaljava" disabled="true">
-              <label for="carrrentaljava">Java (In Development)</label>
+              <input type="radio" id="carrentaljava" name="carrental" value="carrentaljava" disabled="true">
+              <label for="carrentaljava">Java (In Development)</label>
             </div>
           </div>
           <div class="field">
             <div class="ui radio checkbox">
-              <input type="radio" id="carrrentalgo" name="carrrental" value="carrrentalgo" disabled="true">
-              <label for="carrrentalgo">Go (In Development)</label>
+              <input type="radio" id="carrentalgo" name="carrental" value="carrentalgo" disabled="true">
+              <label for="carrentalgo">Go (In Development)</label>
             </div>
           </div>
         </div>
@@ -472,12 +472,14 @@
       </div>
     </div>
 
-    <button class="ui primary basic button" type="button" onclick="deploy()">Submit</button>
+    <button class="ui primary basic button" id="deployButton" type="button" onclick="deploy()">Deploy</button>
   </form>
 </body>
 
 <script>
   deploy = async () => {
+    document.getElementById('deployButton').disabled = true;
+    document.body.style.cursor = 'wait';
     let deployment = document.getElementById('deploymentForm').elements.deployment.value;
     let version = document.getElementById('deploymentForm').elements.version.value;
     let destination = document.getElementById('deploymentForm').elements.destination.value;
@@ -519,6 +521,9 @@
     });
 
     const isDeploying = await response.ok;
+
+    document.getElementById('deployButton').disabled = false;
+    document.body.style.cursor = 'default';
 
     if (isDeploying) {
       alert("Starting deployment to " + deployment);
