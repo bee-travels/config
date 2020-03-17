@@ -13,7 +13,8 @@ This application is used to demonstrate key capabilities of Kubernetes, Openshif
 ## Deploy to the Cloud
 
 With Bee Travels being a polyglot web application with microservices, this allows for flexibility and many options when choosing what and where to deploy this application. 
-> (TODO) To simplify this process, we have created a script called `deploy.sh` that will handle the deployment for you.
+
+For a simplified deployment experiece, check out the deployment wizard in the `/wizard` directory.
 
 Bee Travels currently supports deploying to the Cloud using the following configurations:
 
@@ -57,7 +58,7 @@ TODO
 
 #### Deployment
 
-From your OpenShift dashboard, locate your login command as seen in the below screenshot. The login command should look like this: `oc login --token=<YOUR_TOKEN> --server=<YOUR_SERVER>`
+From your OpenShift dashboard, locate your login command as seen in the below screenshot and run the command in a terminal window. The login command should look like this: `oc login --token=<YOUR_TOKEN> --server=<YOUR_SERVER>`
 
 
 ![](readme-images/openshift-login.jpg)
