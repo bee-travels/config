@@ -7,14 +7,14 @@ const deployments = [
   { value: "K8s", disabled: false },
   { value: "Openshift", disabled: false },
   { value: "Knative", disabled: false },
-  { value: "Istio", disabled: true },
+  { value: "Istio", disabled: false },
   { value: "Helm", disabled: true }
 ];
 
 const versions = [
   { value: "v1", disabled: false },
   { value: "v2", disabled: false },
-  { value: "v3", disabled: false }
+  { value: "v3", disabled: true }
 ];
 
 const languages = [
