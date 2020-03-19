@@ -11,19 +11,6 @@ const deployments = [
   { value: "Helm", disabled: true }
 ];
 
-const versions = [
-  { value: "v1", disabled: false },
-  { value: "v2", disabled: false },
-  { value: "v3", disabled: true }
-];
-
-const languages = [
-  { value: "NodeJS", disabled: false },
-  { value: "Python 3", disabled: true },
-  { value: "Go", disabled: true },
-  { value: "Java EE", disabled: true }
-];
-
 const AppPage = () => {
   const [deployment, setDeployment] = useState(null);
   const [version, setVersion] = useState(null);
@@ -48,22 +35,29 @@ const AppPage = () => {
     }
 
     return Object.keys(version).map((v, i) => {
-      return {value: v, disabled: !version[v]["enabled"]}
-    })
-  }
+      return { value: v, disabled: !version[v]["enabled"] };
+    });
+  };
+
+  const getLanguageList = (version, selectedVersion) => {
+    return Object.keys(version[selectedVersion])
+      .filter(v => v !== "enabled")
+      .map((v, i) => {
+        return { value: v, disabled: !version[selectedVersion][v]["enabled"] };
+      });
+  };
 
   const onDeployementSelected = value => {
-    console.log(value);
     setDeployment(value);
   };
 
   const onVersionSelected = value => {
-    console.log(value);
     setVersion(value);
   };
 
-  const onLanguageSelected = value => {
+  const onLanguageSelected = (value, service) => {
     console.log(value);
+    console.log(service);
     setLanguage(value);
   };
 
@@ -74,13 +68,44 @@ const AppPage = () => {
         <h4>NOTE: UI will automatically be deployed</h4>
         <Choice
           label="Destination"
-          data={languages}
+          data={getLanguageList(loadVersion, "v1")}
           onChange={onLanguageSelected}
         />
-        <Choice label="Hotel" data={languages} onChange={onLanguageSelected} />
+        <Choice
+          label="Hotel"
+          data={getLanguageList(loadVersion, "v1")}
+          onChange={onLanguageSelected}
+        />
         <Choice
           label="CurrencyExchange"
-          data={languages}
+          data={getLanguageList(loadVersion, "v1")}
+          onChange={onLanguageSelected}
+        />
+      </>
+    );
+  };
+
+  const renderV1_1 = () => {
+    return (
+      <>
+        <Choice
+          label="Payment"
+          data={getLanguageList(loadVersion, "v2")}
+          onChange={onLanguageSelected}
+        />
+        <Choice
+          label="Cart"
+          data={getLanguageList(loadVersion, "v2")}
+          onChange={onLanguageSelected}
+        />
+        <Choice
+          label="Checkout"
+          data={getLanguageList(loadVersion, "v2")}
+          onChange={onLanguageSelected}
+        />
+        <Choice
+          label="Email"
+          data={getLanguageList(loadVersion, "v2")}
           onChange={onLanguageSelected}
         />
       </>
@@ -92,22 +117,14 @@ const AppPage = () => {
       <>
         <Choice
           label="CarRental"
-          data={languages}
+          data={getLanguageList(loadVersion, "v2")}
           onChange={onLanguageSelected}
         />
-        <Choice label="Flight" data={languages} onChange={onLanguageSelected} />
         <Choice
-          label="Payment"
-          data={languages}
+          label="Flight"
+          data={getLanguageList(loadVersion, "v2")}
           onChange={onLanguageSelected}
         />
-        <Choice label="Cart" data={languages} onChange={onLanguageSelected} />
-        <Choice
-          label="Checkout"
-          data={languages}
-          onChange={onLanguageSelected}
-        />
-        <Choice label="Email" data={languages} onChange={onLanguageSelected} />
       </>
     );
   };
@@ -117,12 +134,12 @@ const AppPage = () => {
       <>
         <Choice
           label="Weather"
-          data={languages}
+          data={getLanguageList(loadVersion, "v3")}
           onChange={onLanguageSelected}
         />
         <Choice
           label="Message"
-          data={languages}
+          data={getLanguageList(loadVersion, "v3")}
           onChange={onLanguageSelected}
         />
       </>
@@ -149,6 +166,7 @@ const AppPage = () => {
       <>
         {version > "" ? renderV1() : null}
         {version > "v1" ? renderV2() : null}
+        {version > "v1.1" ? renderV1_1(): null}
         {version > "v2" ? renderV3() : null}
         {version > "" ? renderSubmitButton() : null}
       </>
@@ -163,7 +181,11 @@ const AppPage = () => {
         data={deployments}
         onChange={onDeployementSelected}
       />
-      <Choice label="Version" data={getVersionsList(loadVersion)} onChange={onVersionSelected} />
+      <Choice
+        label="Version"
+        data={getVersionsList(loadVersion)}
+        onChange={onVersionSelected}
+      />
       {renderServices(version)}
     </div>
   );

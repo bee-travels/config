@@ -14,7 +14,7 @@ const Choice = ({ label, data, onChange }) => {
                   id={i}
                   name={label}
                   value={v.value}
-                  onChange={(e) => onChange(e.target.value)}
+                  onChange={(e) => onChange(e.target.value, label.toLowerCase())}
                   disabled={v.disabled}
                 />
                 <label>{v.value}{v.disabled?" (In Development)":""}</label>
