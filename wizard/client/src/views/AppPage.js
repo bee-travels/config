@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Choice from "../component/Choice";
 import { Link } from "react-router-dom";
 import history from "../globalHistory";
@@ -27,7 +27,30 @@ const languages = [
 const AppPage = () => {
   const [deployment, setDeployment] = useState(null);
   const [version, setVersion] = useState(null);
+  const [loadVersion, setLoadVersion] = useState(null);
   const [language, setLanguage] = useState(null);
+
+  const loadVersions = async () => {
+    const response = await fetch(
+      "https://raw.githubusercontent.com/bee-travels/config/wizard-update/version.json"
+    );
+    const json = await response.json();
+    setLoadVersion(json);
+  };
+
+  useEffect(() => {
+    loadVersions();
+  }, []);
+
+  const getVersionsList = version => {
+    if (!version) {
+      return [];
+    }
+
+    return Object.keys(version).map((v, i) => {
+      return {value: v, disabled: !version[v]["enabled"]}
+    })
+  }
 
   const onDeployementSelected = value => {
     console.log(value);
@@ -110,15 +133,12 @@ const AppPage = () => {
     history.push({
       pathname: "/config",
       data: "mofi"
-    })
-  }
+    });
+  };
 
   const renderSubmitButton = () => {
     return (
-      <button
-        className="ui inverted primary button"
-        onClick={handleClick}
-      >
+      <button className="ui inverted primary button" onClick={handleClick}>
         Deploy
       </button>
     );
@@ -143,7 +163,7 @@ const AppPage = () => {
         data={deployments}
         onChange={onDeployementSelected}
       />
-      <Choice label="Version" data={versions} onChange={onVersionSelected} />
+      <Choice label="Version" data={getVersionsList(loadVersion)} onChange={onVersionSelected} />
       {renderServices(version)}
     </div>
   );

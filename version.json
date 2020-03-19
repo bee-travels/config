@@ -1,76 +1,76 @@
 {
   "v1": {
     "enabled": true,
-    "node": {
+    "NodeJS": {
       "tag": "dev-48b1f20ca4aac12b41a33417841d91791601ebe5",
       "enabled": true
     },
-    "python": {
+    "Python 3": {
       "tag": "",
       "enabled": false
     },
-    "golang": {
+    "Go": {
       "tag": "",
       "enabled": false
     },
-    "java": {
+    "Java EE": {
       "tag": "",
       "enabled": false
     }
   },
   "v1.1": {
     "enabled": false,
-    "node": {
+    "NodeJS": {
       "tag": "",
       "enabled": false
     },
-    "python": {
+    "Python 3": {
       "tag": "",
       "enabled": false
     },
-    "golang": {
+    "Go": {
       "tag": "",
       "enabled": false
     },
-    "java": {
+    "Java EE": {
       "tag": "",
       "enabled": false
     }
   },
   "v2": {
     "enabled": false,
-    "node": {
+    "NodeJS": {
       "tag": "",
       "enabled": false
     },
-    "python": {
+    "Python 3": {
       "tag": "",
       "enabled": false
     },
-    "golang": {
+    "Go": {
       "tag": "",
       "enabled": false
     },
-    "java": {
+    "Java EE": {
       "tag": "",
       "enabled": false
     }
   },
   "v3": {
     "enabled": false,
-    "node": {
+    "NodeJS": {
       "tag": "",
       "enabled": false
     },
-    "python": {
+    "Python 3": {
       "tag": "",
       "enabled": false
     },
-    "golang": {
+    "Go": {
       "tag": "",
       "enabled": false
     },
-    "java": {
+    "Java EE": {
       "tag": "",
       "enabled": false
     }
