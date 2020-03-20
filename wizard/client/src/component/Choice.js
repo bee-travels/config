@@ -8,13 +8,12 @@ const Choice = ({ label, data, onChange }) => {
         <div className="inline fields">
           {data.map((v, i) => (
             <div className="field" key={i}>
-              <div className="ui radio checkbox">
+              <div className="ui radio checkbox" onChange={(e) => onChange(e.target.value)}>
                 <input
                   type="radio"
                   id={i}
                   name={label}
                   value={v.value}
-                  onChange={(e) => onChange(e.target.value, label.toLowerCase())}
                   disabled={v.disabled}
                 />
                 <label>{v.value}{v.disabled?" (In Development)":""}</label>

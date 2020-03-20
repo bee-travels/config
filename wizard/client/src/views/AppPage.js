@@ -15,7 +15,20 @@ const AppPage = () => {
   const [deployment, setDeployment] = useState(null);
   const [version, setVersion] = useState(null);
   const [loadVersion, setLoadVersion] = useState(null);
-  const [language, setLanguage] = useState(null);
+  const [destinationLanguage, setDestinationLanguage] = useState(null);
+  const [hotelLanguage, setHotelLanguage] = useState(null);
+  const [currencyExchangeLanguage, setCurrencyExchangeLanguage] = useState(
+    null
+  );
+  const [carRentalLanguage, setCarRentalLanguage] = useState(null);
+  const [flightLanguage, setFlightLanguage] = useState(null);
+  const [cartLanguage, setCartLanguage] = useState(null);
+  const [paymentLanguage, setPaymentLanguage] = useState(null);
+  const [emailLanguage, setEmailLanguage] = useState(null);
+  const [checkoutLanguage, setCheckoutLanguage] = useState(null);
+  const [weatherLanguage, setWeatherLanguage] = useState(null);
+  const [messageLanguage, setMessageLanguage] = useState(null);
+  const [buttonDisabled, setButtonDisabled] = useState(true);
 
   const loadVersions = async () => {
     const response = await fetch(
@@ -55,10 +68,73 @@ const AppPage = () => {
     setVersion(value);
   };
 
-  const onLanguageSelected = (value, service) => {
-    console.log(value);
-    console.log(service);
-    setLanguage(value);
+  const onDestinationLanguageSelected = value => {
+    setDestinationLanguage(value);
+  };
+
+  const onHotelLanguageSelected = value => {
+    setHotelLanguage(value);
+  };
+
+  const onCurrencyExchangeLanguageSelected = value => {
+    setCurrencyExchangeLanguage(value);
+  };
+
+  const onFlightLanguageSelected = value => {
+    setFlightLanguage(value);
+  };
+
+  const onPaymentLanguageSelected = value => {
+    setPaymentLanguage(value);
+  };
+
+  const onCartLanguageSelected = value => {
+    setCartLanguage(value);
+  };
+
+  const onCheckoutLanguageSelected = value => {
+    setCheckoutLanguage(value);
+  };
+
+  const onEmailLanguageSelected = value => {
+    setEmailLanguage(value);
+  };
+
+  const onCarRentalLanguageSelected = value => {
+    setCarRentalLanguage(value);
+  };
+
+  const onWeatherLanguageSelected = value => {
+    setWeatherLanguage(value);
+  };
+
+  const onMessageLanguageSelected = value => {
+    setMessageLanguage(value);
+  };
+
+  const versionMap = {
+    v1: [
+      { service: "Destination", onChange: onDestinationLanguageSelected },
+      { service: "Hotel", onChange: onHotelLanguageSelected },
+      {
+        service: "CurrencyExchange",
+        onChange: onCurrencyExchangeLanguageSelected
+      }
+    ],
+    v1_1: [
+      { service: "Cart", onChange: onCartLanguageSelected },
+      { service: "Payment", onChange: onPaymentLanguageSelected },
+      { service: "Checkout", onChange: onCheckoutLanguageSelected },
+      { service: "Email", onChange: onEmailLanguageSelected }
+    ],
+    v2: [
+      { service: "CarRental", onChange: onCarRentalLanguageSelected },
+      { service: "Flight", onChange: onFlightLanguageSelected }
+    ],
+    v3: [
+      { service: "Weather", onChange: onWeatherLanguageSelected },
+      { service: "Message", onChange: onMessageLanguageSelected }
+    ]
   };
 
   const renderV1 = () => {
@@ -66,21 +142,14 @@ const AppPage = () => {
       <>
         <h2>Services</h2>
         <h4>NOTE: UI will automatically be deployed</h4>
-        <Choice
-          label="Destination"
-          data={getLanguageList(loadVersion, "v1")}
-          onChange={onLanguageSelected}
-        />
-        <Choice
-          label="Hotel"
-          data={getLanguageList(loadVersion, "v1")}
-          onChange={onLanguageSelected}
-        />
-        <Choice
-          label="CurrencyExchange"
-          data={getLanguageList(loadVersion, "v1")}
-          onChange={onLanguageSelected}
-        />
+        {versionMap.v1.map((v, i) => (
+          <Choice
+            key={i}
+            label={v.service}
+            data={getLanguageList(loadVersion, "v1")}
+            onChange={v.onChange}
+          />
+        ))}
       </>
     );
   };
@@ -88,26 +157,14 @@ const AppPage = () => {
   const renderV1_1 = () => {
     return (
       <>
-        <Choice
-          label="Payment"
-          data={getLanguageList(loadVersion, "v2")}
-          onChange={onLanguageSelected}
-        />
-        <Choice
-          label="Cart"
-          data={getLanguageList(loadVersion, "v2")}
-          onChange={onLanguageSelected}
-        />
-        <Choice
-          label="Checkout"
-          data={getLanguageList(loadVersion, "v2")}
-          onChange={onLanguageSelected}
-        />
-        <Choice
-          label="Email"
-          data={getLanguageList(loadVersion, "v2")}
-          onChange={onLanguageSelected}
-        />
+        {versionMap.v1_1.map((v, i) => (
+          <Choice
+            key={i}
+            label={v.service}
+            data={getLanguageList(loadVersion, "v1.1")}
+            onChange={v.onChange}
+          />
+        ))}
       </>
     );
   };
@@ -115,16 +172,14 @@ const AppPage = () => {
   const renderV2 = () => {
     return (
       <>
-        <Choice
-          label="CarRental"
-          data={getLanguageList(loadVersion, "v2")}
-          onChange={onLanguageSelected}
-        />
-        <Choice
-          label="Flight"
-          data={getLanguageList(loadVersion, "v2")}
-          onChange={onLanguageSelected}
-        />
+        {versionMap.v2.map((v, i) => (
+          <Choice
+            key={i}
+            label={v.service}
+            data={getLanguageList(loadVersion, "v2")}
+            onChange={v.onChange}
+          />
+        ))}
       </>
     );
   };
@@ -132,16 +187,14 @@ const AppPage = () => {
   const renderV3 = () => {
     return (
       <>
-        <Choice
-          label="Weather"
-          data={getLanguageList(loadVersion, "v3")}
-          onChange={onLanguageSelected}
-        />
-        <Choice
-          label="Message"
-          data={getLanguageList(loadVersion, "v3")}
-          onChange={onLanguageSelected}
-        />
+        {versionMap.v3.map((v, i) => (
+          <Choice
+            key={i}
+            label={v.service}
+            data={getLanguageList(loadVersion, "v3")}
+            onChange={v.onChange}
+          />
+        ))}
       </>
     );
   };
@@ -149,13 +202,57 @@ const AppPage = () => {
   const handleClick = () => {
     history.push({
       pathname: "/config",
-      data: "mofi"
+      data: {
+        deployment: deployment,
+        version: version
+      }
     });
+  };
+
+  const notNull = data => {
+    return data !== null && data !== undefined;
+  };
+
+  const buttonCheck = () => {
+    console.log(version);
+    let v1ServicesSelected =
+      notNull(destinationLanguage) &&
+      notNull(hotelLanguage) &&
+      notNull(currencyExchangeLanguage);
+    let v1_1ServicesSelected =
+      v1ServicesSelected &&
+      notNull(cartLanguage) &&
+      notNull(paymentLanguage) &&
+      notNull(checkoutLanguage) &&
+      notNull(emailLanguage);
+    let v2ServicesSelected =
+      v1_1ServicesSelected &&
+      notNull(carRentalLanguage) &&
+      notNull(flightLanguage);
+    let v3ServicesSelected =
+      v2ServicesSelected &&
+      notNull(weatherLanguage) &&
+      notNull(messageLanguage);
+    if (version === "v1") {
+      console.log(destinationLanguage, hotelLanguage, currencyExchangeLanguage);
+      console.log(v1ServicesSelected);
+      return !v1ServicesSelected;
+    } else if (version === "v1.1") {
+      return !v1_1ServicesSelected;
+    } else if (version === "v2") {
+      return !v2ServicesSelected;
+    } else {
+      return !v3ServicesSelected;
+    }
   };
 
   const renderSubmitButton = () => {
     return (
-      <button className="ui inverted primary button" onClick={handleClick}>
+      <button
+        className="ui inverted primary button"
+        onClick={handleClick}
+        disabled={buttonCheck()}
+      >
         Deploy
       </button>
     );
@@ -165,12 +262,22 @@ const AppPage = () => {
     return (
       <>
         {version > "" ? renderV1() : null}
-        {version > "v1" ? renderV2() : null}
-        {version > "v1.1" ? renderV1_1(): null}
+        {version > "v1" ? renderV1_1() : null}
+        {version > "v1.1" ? renderV2() : null}
         {version > "v2" ? renderV3() : null}
         {version > "" ? renderSubmitButton() : null}
       </>
     );
+  };
+
+  const renderVersions = deployment => {
+    return deployment ? (
+      <Choice
+        label="Version"
+        data={getVersionsList(loadVersion)}
+        onChange={onVersionSelected}
+      />
+    ) : null;
   };
 
   return (
@@ -181,11 +288,7 @@ const AppPage = () => {
         data={deployments}
         onChange={onDeployementSelected}
       />
-      <Choice
-        label="Version"
-        data={getVersionsList(loadVersion)}
-        onChange={onVersionSelected}
-      />
+      {renderVersions(deployment)}
       {renderServices(version)}
     </div>
   );
