@@ -32,7 +32,7 @@ const AppPage = () => {
 
   const loadVersions = async () => {
     const response = await fetch(
-      "https://raw.githubusercontent.com/bee-travels/config/wizard-update/version.json"
+      "https://raw.githubusercontent.com/bee-travels/config/master/version.json"
     );
     const json = await response.json();
     setLoadVersion(json);
@@ -227,34 +227,40 @@ const AppPage = () => {
   }
 
   const handleClick = () => {
-    let services = [];
+    let services = [{service: "ui", tag: loadVersion[version]["NodeJS"].tag}];
     if (version > "") {
       services.push(...versionMap["v1"].map((v, i)=> (
-        {service: v.service, tag: loadVersion["v1"][getLanguageForService(v.service)].tag}
+        {service: v.service.toLowerCase(), tag: loadVersion[version][getLanguageForService(v.service)].tag}
       )))
     }
     if (version > "v1") {
       services.push(...versionMap["v1.1"].map((v, i)=> (
-        {service: v.service, tag: loadVersion["v1.1"][getLanguageForService(v.service)].tag}
+        {service: v.service.toLowerCase(), tag: loadVersion[version][getLanguageForService(v.service)].tag}
       )))
     }
     if (version > "v1.1") {
       services.push(...versionMap["v2"].map((v, i)=> (
-        {service: v.service, tag: loadVersion["v2"][getLanguageForService(v.service)].tag}
+        {service: v.service.toLowerCase(), tag: loadVersion[version][getLanguageForService(v.service)].tag}
       )))
     }
     if (version > "v2") {
       services.push(...versionMap["v3"].map((v, i)=> (
-        {service: v.service, tag: loadVersion["v3"][getLanguageForService(v.service)].tag}
+        {service: v.service.toLowerCase(), tag: loadVersion[version][getLanguageForService(v.service)].tag}
       )))
     }
+
+    let data = {
+      deployment: deployment,
+      version: version,
+    }
+
+    for(var i = 0; i<services.length; i++) {
+      data[services[i].service] = services[i]
+    }
+
     history.push({
       pathname: "/config",
-      data: {
-        deployment: deployment,
-        version: version,
-        services: services
-      }
+      data: data
     });
   };
 

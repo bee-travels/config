@@ -1,4 +1,4 @@
-{{if .ui}} 
+{{if .UI}} 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -22,7 +22,7 @@ spec:
         run:  bee-ui
     spec:
       containers:
-      - image: {{ .ui.image }}/{{ .ui.tag }}
+      - image: bee-travels/ui:{{ .UI.Tag }}
         imagePullPolicy: Always
         name:  bee-ui
         env:
@@ -59,7 +59,7 @@ spec:
     protocol: TCP
     targetPort:  9000
 {{- end}}
-{{if .destination}}  
+{{if .Destination}}  
 
 ---
 apiVersion: apps/v1
@@ -85,7 +85,7 @@ spec:
         run:  destination
     spec:
       containers:
-      - image:  {{ .ui.destination }}/{{ .destination.tag }}
+      - image:  bee-travels/destination:{{ .Destination.Tag }}
         imagePullPolicy: Always
         name:  destination
         env:
@@ -120,7 +120,7 @@ spec:
     protocol: TCP
     targetPort:  9001
 {{- end}}
-{{if .hotel}}  
+{{if .Hotel}}  
 
 ---
 apiVersion: apps/v1
@@ -146,7 +146,7 @@ spec:
         run:  hotel
     spec:
       containers:
-      - image:  {{ .hotel.image }}/{{ .hotel.tag }}
+      - image:  bee-travels/hotel:/{{ .Hotel.Tag }}
         imagePullPolicy: Always
         name:  hotel
         env:
@@ -181,7 +181,7 @@ spec:
     protocol: TCP
     targetPort:  9101
 {{- end}}
-{{if .currencyexchange}}  
+{{if .Currencyexchange}}  
 
 ---
 apiVersion: apps/v1
@@ -207,7 +207,7 @@ spec:
         run:  currencyexchange
     spec:
       containers:
-      - image:  {{ .currencyexchange.image }}/{{ .currencyexchange.tag }}
+      - image:  bee-travels/currencyexchange:{{ .Currencyexchange.Tag }}
         imagePullPolicy: Always
         name: currencyexchange
         env:
