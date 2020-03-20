@@ -32,7 +32,7 @@ const AppPage = () => {
 
   const loadVersions = async () => {
     const response = await fetch(
-      "https://raw.githubusercontent.com/bee-travels/config/master/version.json"
+      "https://raw.githubusercontent.com/bee-travels/config/wizard-template/version.json"
     );
     const json = await response.json();
     setLoadVersion(json);
@@ -249,7 +249,7 @@ const AppPage = () => {
       )))
     }
 
-    let data = {
+    let data = { 
       deployment: deployment,
       version: version,
     }
