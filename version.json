@@ -6,8 +6,8 @@
       "enabled": true
     },
     "Python 3": {
-      "tag": "",
-      "enabled": false
+      "tag": "dev-python",
+      "enabled": true
     },
     "Go": {
       "tag": "",
