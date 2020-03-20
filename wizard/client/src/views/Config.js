@@ -8,6 +8,8 @@ const Config = props => {
     setData(text);
   };
 
+  console.log(props.location.data);
+
   useEffect(() => {
     loadData();
   }, []);

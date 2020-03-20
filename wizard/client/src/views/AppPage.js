@@ -121,7 +121,7 @@ const AppPage = () => {
         onChange: onCurrencyExchangeLanguageSelected
       }
     ],
-    v1_1: [
+    "v1.1": [
       { service: "Cart", onChange: onCartLanguageSelected },
       { service: "Payment", onChange: onPaymentLanguageSelected },
       { service: "Checkout", onChange: onCheckoutLanguageSelected },
@@ -157,7 +157,7 @@ const AppPage = () => {
   const renderV1_1 = () => {
     return (
       <>
-        {versionMap.v1_1.map((v, i) => (
+        {versionMap["v1.1"].map((v, i) => (
           <Choice
             key={i}
             label={v.service}
@@ -199,12 +199,61 @@ const AppPage = () => {
     );
   };
 
+  const getLanguageForService = service => {
+    switch (service) {
+      case "Destination":
+        return destinationLanguage;
+      case "Hotel":
+        return hotelLanguage;
+      case "CurrencyExchange":
+        return currencyExchangeLanguage;
+      case "CarRental":
+        return carRentalLanguage;
+      case "Payment":
+        return paymentLanguage;
+      case "Cart":
+        return carRentalLanguage;
+      case "Checkout":
+        return checkoutLanguage;
+      case "Email":
+        return emailLanguage;
+      case "Flight":
+        return flightLanguage;
+      case "Weather":
+        return weatherLanguage;
+      case "Message":
+        return messageLanguage;
+    }
+  }
+
   const handleClick = () => {
+    let services = [];
+    if (version > "") {
+      services.push(...versionMap["v1"].map((v, i)=> (
+        {service: v.service, tag: loadVersion["v1"][getLanguageForService(v.service)].tag}
+      )))
+    }
+    if (version > "v1") {
+      services.push(...versionMap["v1.1"].map((v, i)=> (
+        {service: v.service, tag: loadVersion["v1.1"][getLanguageForService(v.service)].tag}
+      )))
+    }
+    if (version > "v1.1") {
+      services.push(...versionMap["v2"].map((v, i)=> (
+        {service: v.service, tag: loadVersion["v2"][getLanguageForService(v.service)].tag}
+      )))
+    }
+    if (version > "v2") {
+      services.push(...versionMap["v3"].map((v, i)=> (
+        {service: v.service, tag: loadVersion["v3"][getLanguageForService(v.service)].tag}
+      )))
+    }
     history.push({
       pathname: "/config",
       data: {
         deployment: deployment,
-        version: version
+        version: version,
+        services: services
       }
     });
   };
@@ -214,7 +263,6 @@ const AppPage = () => {
   };
 
   const buttonCheck = () => {
-    console.log(version);
     let v1ServicesSelected =
       notNull(destinationLanguage) &&
       notNull(hotelLanguage) &&
@@ -234,8 +282,6 @@ const AppPage = () => {
       notNull(weatherLanguage) &&
       notNull(messageLanguage);
     if (version === "v1") {
-      console.log(destinationLanguage, hotelLanguage, currencyExchangeLanguage);
-      console.log(v1ServicesSelected);
       return !v1ServicesSelected;
     } else if (version === "v1.1") {
       return !v1_1ServicesSelected;
