@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Choice from "../component/Choice";
-import { Link } from "react-router-dom";
+import "./Choice.css";
 import history from "../globalHistory";
 
 const deployments = [
@@ -28,7 +28,8 @@ const AppPage = () => {
   const [checkoutLanguage, setCheckoutLanguage] = useState(null);
   const [weatherLanguage, setWeatherLanguage] = useState(null);
   const [messageLanguage, setMessageLanguage] = useState(null);
-  const [buttonDisabled, setButtonDisabled] = useState(true);
+  const [ingress, setIngress] = useState(null);
+  const [ingressSecret, setIngressSecret] = useState(null);
 
   const loadVersions = async () => {
     const response = await fetch(
@@ -224,38 +225,50 @@ const AppPage = () => {
       case "Message":
         return messageLanguage;
     }
-  }
+  };
 
   const handleClick = () => {
-    let services = [{service: "ui", tag: loadVersion[version]["NodeJS"].tag}];
+    let services = [{ service: "ui", tag: loadVersion[version]["NodeJS"].tag }];
     if (version > "") {
-      services.push(...versionMap["v1"].map((v, i)=> (
-        {service: v.service.toLowerCase(), tag: loadVersion[version][getLanguageForService(v.service)].tag}
-      )))
+      services.push(
+        ...versionMap["v1"].map((v, i) => ({
+          service: v.service.toLowerCase(),
+          tag: loadVersion[version][getLanguageForService(v.service)].tag
+        }))
+      );
     }
     if (version > "v1") {
-      services.push(...versionMap["v1.1"].map((v, i)=> (
-        {service: v.service.toLowerCase(), tag: loadVersion[version][getLanguageForService(v.service)].tag}
-      )))
+      services.push(
+        ...versionMap["v1.1"].map((v, i) => ({
+          service: v.service.toLowerCase(),
+          tag: loadVersion[version][getLanguageForService(v.service)].tag
+        }))
+      );
     }
     if (version > "v1.1") {
-      services.push(...versionMap["v2"].map((v, i)=> (
-        {service: v.service.toLowerCase(), tag: loadVersion[version][getLanguageForService(v.service)].tag}
-      )))
+      services.push(
+        ...versionMap["v2"].map((v, i) => ({
+          service: v.service.toLowerCase(),
+          tag: loadVersion[version][getLanguageForService(v.service)].tag
+        }))
+      );
     }
     if (version > "v2") {
-      services.push(...versionMap["v3"].map((v, i)=> (
-        {service: v.service.toLowerCase(), tag: loadVersion[version][getLanguageForService(v.service)].tag}
-      )))
+      services.push(
+        ...versionMap["v3"].map((v, i) => ({
+          service: v.service.toLowerCase(),
+          tag: loadVersion[version][getLanguageForService(v.service)].tag
+        }))
+      );
     }
 
-    let data = { 
+    let data = {
       deployment: deployment,
-      version: version,
-    }
+      version: version
+    };
 
-    for(var i = 0; i<services.length; i++) {
-      data[services[i].service] = services[i]
+    for (var i = 0; i < services.length; i++) {
+      data[services[i].service] = services[i];
     }
 
     history.push({
@@ -269,6 +282,9 @@ const AppPage = () => {
   };
 
   const buttonCheck = () => {
+    if (deployment === "K8s" || deployment === "Knative" || deployment === "Helm") {
+
+    }
     let v1ServicesSelected =
       notNull(destinationLanguage) &&
       notNull(hotelLanguage) &&
@@ -332,6 +348,38 @@ const AppPage = () => {
     ) : null;
   };
 
+  const renderIngressTextBox = deployment => {
+    if (
+      deployment === "K8s" ||
+      deployment === "Knative" ||
+      deployment === "Helm"
+    ) {
+      return (
+        <div className="ui segment">
+          <h2>If Deployed on Kubernetes cluster with Ingress Enabled</h2>
+          <div className="ui fluid input">
+            <input
+              type="text"
+              placeholder="Kubernetes Ingress"
+              value={ingress}
+              onChange={e=> setIngress(e.target.value)}
+            />
+          </div>
+          <div style={{ margin: "4px" }}></div>
+          <div className="ui fluid input">
+            <input
+              type="text"
+              placeholder="Kubernetes Ingress Secret"
+              value={ingressSecret}
+              onChange={e => setIngressSecret(e.target.value)}
+            />
+          </div>
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
     <div style={{ padding: "20px" }}>
       <h1 className="ui header">Bee Travels Deployment Wizard</h1>
@@ -340,6 +388,7 @@ const AppPage = () => {
         data={deployments}
         onChange={onDeployementSelected}
       />
+      {renderIngressTextBox(deployment)}
       {renderVersions(deployment)}
       {renderServices(version)}
     </div>

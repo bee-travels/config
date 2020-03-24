@@ -8,8 +8,8 @@ const AppRouter = () => {
   return (
     <Router history={history}>
       <Switch>
-        <Route path="/" exact component={AppPage} />
         <Route path="/config" exact component={Config} />
+        <Route path="/" component={AppPage} />
       </Switch>
     </Router>
   );
