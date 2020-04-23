@@ -5,10 +5,10 @@ metadata:
 spec:
   tls:
     - hosts: 
-        - mofi-iks-5290c8c8e5797924dc1ad5d1b85b37c0-0000.us-east.containers.appdomain.cloud
-      secretName: mofi-iks-5290c8c8e5797924dc1ad5d1b85b37c0-0000
+        - bee-travels.mofi-le-442dbba0442be6c8c50f31ed96b00601-0000.us-east.containers.appdomain.cloud
+      secretName: mofi-le-442dbba0442be6c8c50f31ed96b00601-0000
   rules:
-    - host: mofi-iks-5290c8c8e5797924dc1ad5d1b85b37c0-0000.us-east.containers.appdomain.cloud
+    - host: bee-travels.mofi-le-442dbba0442be6c8c50f31ed96b00601-0000.us-east.containers.appdomain.cloud
       http:
         paths:
           - path: /

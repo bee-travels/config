@@ -21,12 +21,12 @@ spec:
         run:  currencyexchange
     spec:
       containers:
-      - image:  beetravels/currencyexchange:v0.0.2
+      - image:  beetravels/currencyexchange:v1-8f640bbf6d8391ed1188f3067f760ec947cd74fe
         imagePullPolicy: Always
         name: currencyexchange
         env:
           - name: PORT
-            value: "4001"
+            value: "9201"
           - name: HOST_IP
             value: currencyexchange
           - name: SCHEME
