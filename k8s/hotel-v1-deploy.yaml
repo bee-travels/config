@@ -21,7 +21,7 @@ spec:
         run:  hotel
     spec:
       containers:
-      - image:  beetravels/hotel:v1-8f640bbf6d8391ed1188f3067f760ec947cd74fe
+      - image:  beetravels/hotel-v1:node-b32c141d36c3f618ca8cf8ee96ee1c65c7f7bcd7
         imagePullPolicy: Always
         name:  hotel
         env:

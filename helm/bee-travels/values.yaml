@@ -1,5 +1,5 @@
 global:
-    tag: v1-8f640bbf6d8391ed1188f3067f760ec947cd74fe
+    tag: node-b32c141d36c3f618ca8cf8ee96ee1c65c7f7bcd7
     ingress: 
         host: mofi-le-442dbba0442be6c8c50f31ed96b00601-0000.us-east.containers.appdomain.cloud
         secret: mofi-le-442dbba0442be6c8c50f31ed96b00601-0000

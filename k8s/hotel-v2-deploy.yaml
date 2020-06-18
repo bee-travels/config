@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  hotel
+  labels:
+    run:  hotel
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run:  hotel
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        run:  hotel
+    spec:
+      containers:
+      - image:  beetravels/hotel-v2:node-b32c141d36c3f618ca8cf8ee96ee1c65c7f7bcd7
+        imagePullPolicy: Always
+        name:  hotel
+        env:
+          - name: PORT
+            value: "9101"
+          - name: HOST_IP
+            value: hotel
+          - name: SCHEME
+            value: http
+          - name: HOTEL_DATABASE
+            value: postgres
+          - name: HOTEL_MONGO_CONNECTION_URL
+            value: mongodb://admin:admin@mongo:27017
+          - name: HOTEL_COUCH_CLOUDANT_CONNECTION_URL
+            value: http://admin:admin@couch:5984
+          - name: HOTEL_PG_HOST
+            value: postgres
+          - name: HOTEL_PG_USER
+            value: postgres
+          - name: HOTEL_PG_PASSWORD
+            value: postgres
+        resources:
+          limits:
+            cpu: 200m
+            memory: 256Mi
+          requests:
+            cpu: 200m
+            memory: 256Mi
+      restartPolicy: Always
+      

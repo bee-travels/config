@@ -1,14 +1,14 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: bee-travels-ingress
+  name: bee-travels-ingress-demo
 spec:
   tls:
     - hosts: 
-        - bee-travels.mofi-le-442dbba0442be6c8c50f31ed96b00601-0000.us-east.containers.appdomain.cloud
-      secretName: mofi-le-442dbba0442be6c8c50f31ed96b00601-0000
+        - bee-travels-demo.mofi-ingress-442dbba0442be6c8c50f31ed96b00601-0000.us-east.containers.appdomain.cloud
+      secretName: mofi-ingress-442dbba0442be6c8c50f31ed96b00601-0000
   rules:
-    - host: bee-travels.mofi-le-442dbba0442be6c8c50f31ed96b00601-0000.us-east.containers.appdomain.cloud
+    - host: bee-travels-demo.mofi-ingress-442dbba0442be6c8c50f31ed96b00601-0000.us-east.containers.appdomain.cloud
       http:
         paths:
           - path: /

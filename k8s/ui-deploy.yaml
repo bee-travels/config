@@ -21,14 +21,18 @@ spec:
         run:  bee-ui
     spec:
       containers:
-      - image:  beetravels/ui:v1-8f640bbf6d8391ed1188f3067f760ec947cd74fe
+      - image:  beetravels/ui:node-b32c141d36c3f618ca8cf8ee96ee1c65c7f7bcd7
         imagePullPolicy: Always
         name:  bee-ui
         env:
           - name: PORT
             value: "9000"
+          - name: NODE_ENV
+            value: production
           - name: DESTINATION_URL
             value: http://destination
+          - name: CAR_URL
+            value: http://carrental
           - name: HOTEL_URL
             value: http://hotel
           - name: CURRENCY_EXCHANGE_URL
