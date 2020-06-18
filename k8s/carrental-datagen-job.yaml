@@ -15,12 +15,9 @@ spec:
             - name: PG_USER
               value: postgress
             - name: PG_HOST
-              value: bee-travels-db-postgresql
+              value: "172.21.58.148"
             - name: PG_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: bee-travels-db-postgresql
-                  key: postgresql-password
+              value: Oyg9YxwKmm
             - name: MONGO_CONNECTION_URL
               value: mongodb://admin:admin@mongo:27017
             - name: COUCH_CONNECTION_URL
