@@ -38,11 +38,14 @@ spec:
           - name: CAR_COUCH_CLOUDANT_CONNECTION_URL
             value: http://admin:admin@couch:5984
           - name: CAR_PG_HOST
-            value: postgres
+            value: bee-travels-db-postgresql
           - name: CAR_PG_USER
             value: postgres
           - name: CAR_PG_PASSWORD
-            value: postgres
+            valueFrom:
+              secretKeyRef:
+                name: bee-travels-db-postgresql
+                key: postgresql-password
         resources:
           limits:
             cpu: 200m

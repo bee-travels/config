@@ -38,11 +38,14 @@ spec:
           - name: HOTEL_COUCH_CLOUDANT_CONNECTION_URL
             value: http://admin:admin@couch:5984
           - name: HOTEL_PG_HOST
-            value: postgres
+            value: bee-travels-db-postgresql
           - name: HOTEL_PG_USER
             value: postgres
           - name: HOTEL_PG_PASSWORD
-            value: postgres
+            valueFrom:
+              secretKeyRef:
+                name: bee-travels-db-postgresql
+                key: postgresql-password
         resources:
           limits:
             cpu: 200m
