@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  carrental
+  name:  carrental-v1
   labels:
     run:  carrental
     version: v1
@@ -10,6 +10,7 @@ spec:
   selector:
     matchLabels:
       run:  carrental
+      version: v1
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -19,6 +20,7 @@ spec:
     metadata:
       labels:
         run:  carrental
+        version: v1
     spec:
       containers:
       - image:  beetravels/carrental-v1:node-471ff48530e5311413108c58cbfd7bc7016f2269

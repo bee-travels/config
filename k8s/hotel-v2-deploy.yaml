@@ -1,15 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  hotel
+  name:  hotel-v2
   labels:
     run:  hotel
-    version: v1
+    version: v2
 spec:
   replicas: 1
   selector:
     matchLabels:
       run:  hotel
+      version: v2
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -19,6 +20,7 @@ spec:
     metadata:
       labels:
         run:  hotel
+        version: v2
     spec:
       containers:
       - image:  beetravels/hotel-v2:node-471ff48530e5311413108c58cbfd7bc7016f2269

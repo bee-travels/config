@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  destination
+  name:  destination-v1
   labels:
     run:  destination
     version: v1
@@ -10,6 +10,7 @@ spec:
   selector:
     matchLabels:
       run:  destination
+      version: v1
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -19,6 +20,7 @@ spec:
     metadata:
       labels:
         run:  destination
+        version: v1
     spec:
       containers:
       - image:  beetravels/destination-v1:node-471ff48530e5311413108c58cbfd7bc7016f2269
