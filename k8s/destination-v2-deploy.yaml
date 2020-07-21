@@ -21,7 +21,7 @@ spec:
         run:  destination
     spec:
       containers:
-      - image:  beetravels/destination-v2:node-471ff48530e5311413108c58cbfd7bc7016f2269
+      - image:  beetravels/destination-v2:node-50d8ef540932c4a925982ba50a7d8f81434e3592
         imagePullPolicy: Always
         name:  destination
         env:

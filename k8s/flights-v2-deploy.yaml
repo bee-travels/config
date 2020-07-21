@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  carrental
+  name:  flights
   labels:
-    run:  carrental
+    run:  flights
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run:  carrental
+      run:  flights
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -18,30 +18,30 @@ spec:
   template:
     metadata:
       labels:
-        run:  carrental
+        run:  flights
     spec:
       containers:
-      - image:  beetravels/carrental-v2:node-50d8ef540932c4a925982ba50a7d8f81434e3592
+      - image:  beetravels/flights-v2:node-50d8ef540932c4a925982ba50a7d8f81434e3592
         imagePullPolicy: Always
-        name:  carrental
+        name:  flights
         env:
           - name: PORT
-            value: "9102"
+            value: "9103"
           - name: HOST_IP
-            value: carrental
+            value: flights
           - name: SCHEME
             value: http
-          - name: CAR_DATABASE
+          - name: FLIGHTS_DATABASE
             value: postgres
-          - name: CAR_MONGO_CONNECTION_URL
+          - name: FLIGHTS_MONGO_CONNECTION_URL
             value: mongodb://admin:admin@mongo:27017
-          - name: CAR_COUCH_CLOUDANT_CONNECTION_URL
+          - name: FLIGHTS_COUCH_CLOUDANT_CONNECTION_URL
             value: http://admin:admin@couch:5984
-          - name: CAR_PG_HOST
+          - name: FLIGHTS_PG_HOST
             value: bee-travels-db-postgresql
-          - name: CAR_PG_USER
+          - name: FLIGHTS_PG_USER
             value: postgres
-          - name: CAR_PG_PASSWORD
+          - name: FLIGHTS_PG_PASSWORD
             value: Oyg9YxwKmm
         resources:
           limits:

@@ -21,7 +21,7 @@ spec:
         run:  currencyexchange
     spec:
       containers:
-      - image:  beetravels/currencyexchange:node-471ff48530e5311413108c58cbfd7bc7016f2269
+      - image:  beetravels/currencyexchange:node-50d8ef540932c4a925982ba50a7d8f81434e3592
         imagePullPolicy: Always
         name: currencyexchange
         env:
