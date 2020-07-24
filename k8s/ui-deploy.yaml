@@ -19,9 +19,10 @@ spec:
     metadata:
       labels:
         run:  bee-ui
+        version: v1
     spec:
       containers:
-      - image:  beetravels/ui:node-471ff48530e5311413108c58cbfd7bc7016f2269
+      - image:  moficodes/bee-ui:v1.0.0
         imagePullPolicy: Always
         name:  bee-ui
         env:

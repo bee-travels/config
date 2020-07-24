@@ -23,7 +23,7 @@ spec:
         version: v2
     spec:
       containers:
-      - image:  beetravels/hotel-v2:node-471ff48530e5311413108c58cbfd7bc7016f2269
+      - image:  beetravels/hotel-v2:node-03e4a69a09bdc56ca9676af9355fbf204b48db31
         imagePullPolicy: Always
         name:  hotel
         env:
@@ -34,9 +34,9 @@ spec:
           - name: SCHEME
             value: http
           - name: HOTEL_DATABASE
-            value: postgres
+            value: mongodb
           - name: HOTEL_MONGO_CONNECTION_URL
-            value: mongodb://admin:admin@mongo:27017
+            value: mongodb://admin:adminadmin1@059d7ac6-942a-4f24-b2c4-9fd7d0b94865-0.4b2136ddd30a46e9b7bdb2b2db7f8cd0.databases.appdomain.cloud:31653,059d7ac6-942a-4f24-b2c4-9fd7d0b94865-1.4b2136ddd30a46e9b7bdb2b2db7f8cd0.databases.appdomain.cloud:31653/ibmclouddb?authSource=admin&replicaSet=replset&tls=true
           - name: HOTEL_COUCH_CLOUDANT_CONNECTION_URL
             value: http://admin:admin@couch:5984
           - name: HOTEL_PG_HOST
@@ -45,12 +45,17 @@ spec:
             value: postgres
           - name: HOTEL_PG_PASSWORD
             value: Oyg9YxwKmm
+          - name: DATABASE_CERT
+            valueFrom:
+              secretKeyRef:
+                name: mongo-secret
+                key: dbsecret
         resources:
           limits:
-            cpu: 200m
-            memory: 256Mi
+            cpu: 500m
+            memory: 1024Mi
           requests:
-            cpu: 200m
-            memory: 256Mi
+            cpu: 500m
+            memory: 1024Mi
       restartPolicy: Always
       

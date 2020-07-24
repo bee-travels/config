@@ -3,13 +3,13 @@ kind: Deployment
 metadata:
   name:  carrental-v1
   labels:
-    run:  carrental
+    app:  carrental
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run:  carrental
+      app:  carrental
       version: v1
   strategy:
     rollingUpdate:
@@ -19,13 +19,16 @@ spec:
   template:
     metadata:
       labels:
-        run:  carrental
+        app: carrental
         version: v1
     spec:
       containers:
-      - image:  beetravels/carrental-v1:node-471ff48530e5311413108c58cbfd7bc7016f2269
+      - image:  moficodes/car-rental-v1:v1.0.0
         imagePullPolicy: Always
-        name:  carrental
+        name: carrental
+        ports:
+          - containerPort: 9102
+            name: http-moficar
         env:
           - name: PORT
             value: "9102"
@@ -33,12 +36,14 @@ spec:
             value: carrental
           - name: SCHEME
             value: http
+          - name: LOG_LEVEL
+            value: info
         resources:
           limits:
-            cpu: 200m
-            memory: 256Mi
+            cpu: 500m
+            memory: 1024Mi
           requests:
-            cpu: 200m
-            memory: 256Mi
+            cpu: 500m
+            memory: 1024Mi
       restartPolicy: Always
       

@@ -3,13 +3,13 @@ kind: Deployment
 metadata:
   name:  hotel-v1
   labels:
-    run:  hotel
+    app:  hotel
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run:  hotel
+      app:  hotel
       version: v1
   strategy:
     rollingUpdate:
@@ -19,11 +19,11 @@ spec:
   template:
     metadata:
       labels:
-        run:  hotel
+        app:  hotel
         version: v1
     spec:
       containers:
-      - image:  beetravels/hotel-v1:node-471ff48530e5311413108c58cbfd7bc7016f2269
+      - image:  moficodes/hotel-v1:v1.0.0
         imagePullPolicy: Always
         name:  hotel
         env:
@@ -33,12 +33,14 @@ spec:
             value: hotel
           - name: SCHEME
             value: http
+          - name: LOG_LEVEL
+            value: info
         resources:
           limits:
-            cpu: 200m
-            memory: 256Mi
+            cpu: 500m
+            memory: 1024Mi
           requests:
-            cpu: 200m
-            memory: 256Mi
+            cpu: 500m
+            memory: 1024Mi
       restartPolicy: Always
       

@@ -1,15 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  currencyexchange
+  name:  mongo
   labels:
-    run:  currencyexchange
-    version: v1
+    run:  mongo
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run:  currencyexchange
+      run:  mongo
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -18,19 +17,19 @@ spec:
   template:
     metadata:
       labels:
-        run:  currencyexchange
+        run:  mongo
     spec:
       containers:
-      - image:  beetravels/currencyexchange:node-03e4a69a09bdc56ca9676af9355fbf204b48db31
+      - image:  mongo
         imagePullPolicy: Always
-        name: currencyexchange
+        name:  mongo
         env:
+          - name: MONGO_INITDB_ROOT_USERNAME
+            value: admin
+          - name: MONGO_INITDB_ROOT_PASSWORD
+            value: admin
           - name: PORT
-            value: "9201"
-          - name: HOST_IP
-            value: currencyexchange
-          - name: SCHEME
-            value: http
+            value: "27017"
         resources:
           limits:
             cpu: 200m

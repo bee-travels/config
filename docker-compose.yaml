@@ -1,0 +1,22 @@
+---
+version: '3.3'
+
+services:
+  mongo-express:
+    image: mongo-express
+    restart: always
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=admin
+    ports:
+      - 8081:8081
+
+  mongo:
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+    restart: always

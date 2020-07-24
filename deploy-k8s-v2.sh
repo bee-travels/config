@@ -10,4 +10,4 @@ kubectl apply -f k8s/hotel-service.yaml
 kubectl apply -f k8s/carrental-service.yaml
 kubectl apply -f k8s/currencyexchange-service.yaml
 kubectl apply -f k8s/ui-service.yaml
-kubectl apply -f k8s/ui-ingress.yaml
+# kubectl apply -f k8s/ui-ingress.yaml

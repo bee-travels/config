@@ -23,7 +23,7 @@ spec:
         version: v1
     spec:
       containers:
-      - image:  beetravels/destination-v1:node-471ff48530e5311413108c58cbfd7bc7016f2269
+      - image:  moficodes/destination-v1:v1.0.0
         imagePullPolicy: Always
         name:  destination
         env:
@@ -33,12 +33,14 @@ spec:
             value: destination
           - name: SCHEME
             value: http
+          - name: LOG_LEVEL
+            value: info
         resources:
           limits:
-            cpu: 200m
-            memory: 256Mi
+            cpu: 500m
+            memory: 1024Mi
           requests:
-            cpu: 200m
-            memory: 256Mi
+            cpu: 500m
+            memory: 1024Mi
       restartPolicy: Always
       

@@ -3,12 +3,13 @@ apiVersion: v1
 metadata:
   name:  hotel
   labels:
-    run: hotel
+    app: hotel
 spec:
   selector:
-    run:  hotel
+    app:  hotel
   type:  ClusterIP
   ports:
   - port: 80
     protocol: TCP
+    name: http
     targetPort:  9101
