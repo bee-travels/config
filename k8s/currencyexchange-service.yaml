@@ -3,10 +3,10 @@ apiVersion: v1
 metadata:
   name:  currencyexchange
   labels:
-    run: currencyexchange
+    app: currencyexchange
 spec:
   selector:
-    run:  currencyexchange
+    app:  currencyexchange
   type:  ClusterIP
   ports:
   - port: 80

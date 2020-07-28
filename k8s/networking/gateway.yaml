@@ -11,7 +11,7 @@ spec:
       name: http
       protocol: HTTP
     hosts:
-    - "*"
+    - '*'
 ---
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
@@ -19,7 +19,7 @@ metadata:
   name: bee-travels
 spec:
   hosts:
-  - "*"
+  - '*'
   gateways:
   - bee-travels-gateway
   http:

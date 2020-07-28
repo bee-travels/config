@@ -3,13 +3,13 @@ kind: Deployment
 metadata:
   name:  destination-v1
   labels:
-    run:  destination
+    app:  destination
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run:  destination
+      app:  destination
       version: v1
   strategy:
     rollingUpdate:
@@ -19,12 +19,14 @@ spec:
   template:
     metadata:
       labels:
-        run:  destination
+        app:  destination
         version: v1
     spec:
       containers:
       - image:  moficodes/destination-v1:v1.0.0
         imagePullPolicy: Always
+        ports:
+        - containerPort: 9001
         name:  destination
         env:
           - name: PORT

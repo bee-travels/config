@@ -27,7 +27,7 @@ spec:
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: hotel
+  name: hotel-vs
 spec:
   hosts:
     - hotel
@@ -50,15 +50,3 @@ spec:
         host: currencyexchange
         subset: v1
 ---
-apiVersion: networking.istio.io/v1beta1
-kind: VirtualService
-metadata:
-  name: bee-ui
-spec:
-  hosts:
-  - bee-ui
-  http:
-  - route:
-    - destination:
-        host: bee-ui
-        subset: v1

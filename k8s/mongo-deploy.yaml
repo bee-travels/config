@@ -3,12 +3,12 @@ kind: Deployment
 metadata:
   name:  mongo
   labels:
-    run:  mongo
+    app:  mongo
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run:  mongo
+      app:  mongo
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -17,7 +17,7 @@ spec:
   template:
     metadata:
       labels:
-        run:  mongo
+        app:  mongo
     spec:
       containers:
       - image:  mongo

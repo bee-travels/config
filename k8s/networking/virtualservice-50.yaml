@@ -10,11 +10,11 @@ spec:
     - destination:
         host: carrental
         subset: v1
-      weight: 50
+      weight: 0
     - destination:
         host: carrental
         subset: v2
-      weight: 50
+      weight: 100
 ---
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
@@ -28,11 +28,11 @@ spec:
     - destination:
         host: destination
         subset: v1
-      weight: 50
+      weight: 0
     - destination:
         host: destination
         subset: v2
-      weight: 50
+      weight: 100
 ---
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
@@ -46,11 +46,11 @@ spec:
     - destination:
         host: hotel
         subset: v1
-      weight: 50
+      weight: 0
     - destination:
         host: hotel
         subset: v2
-      weight: 50
+      weight: 100
 ---
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService

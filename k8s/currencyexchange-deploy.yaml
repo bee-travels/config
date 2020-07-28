@@ -3,13 +3,14 @@ kind: Deployment
 metadata:
   name:  currencyexchange
   labels:
-    run:  currencyexchange
+    app:  currencyexchange
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run:  currencyexchange
+      app:  currencyexchange
+      version: v1
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -18,7 +19,8 @@ spec:
   template:
     metadata:
       labels:
-        run:  currencyexchange
+        app:  currencyexchange
+        version: v1
     spec:
       containers:
       - image:  beetravels/currencyexchange:node-03e4a69a09bdc56ca9676af9355fbf204b48db31

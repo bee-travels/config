@@ -25,6 +25,8 @@ spec:
       containers:
       - image:  beetravels/carrental-v2:node-03e4a69a09bdc56ca9676af9355fbf204b48db31
         imagePullPolicy: Always
+        ports:
+        - containerPort: 9102
         name:  carrental
         env:
           - name: PORT
@@ -33,17 +35,17 @@ spec:
             value: carrental
           - name: SCHEME
             value: http
-          - name: CAR_DATABASE
+          - name: DATABASE
             value: mongodb
-          - name: CAR_MONGO_CONNECTION_URL
+          - name: MONGO_CONNECTION_URL
             value: mongodb://admin:adminadmin1@059d7ac6-942a-4f24-b2c4-9fd7d0b94865-0.4b2136ddd30a46e9b7bdb2b2db7f8cd0.databases.appdomain.cloud:31653,059d7ac6-942a-4f24-b2c4-9fd7d0b94865-1.4b2136ddd30a46e9b7bdb2b2db7f8cd0.databases.appdomain.cloud:31653/ibmclouddb?authSource=admin&replicaSet=replset&tls=true
-          - name: CAR_COUCH_CLOUDANT_CONNECTION_URL
+          - name: COUCH_CLOUDANT_CONNECTION_URL
             value: http://admin:admin@couch:5984
-          - name: CAR_PG_HOST
+          - name: PG_HOST
             value: bee-travels-db-postgresql
-          - name: CAR_PG_USER
+          - name: PG_USER
             value: postgres
-          - name: CAR_PG_PASSWORD
+          - name: PG_PASSWORD
             value: Oyg9YxwKmm
           - name: DATABASE_CERT
             valueFrom:

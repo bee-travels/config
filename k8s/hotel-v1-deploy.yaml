@@ -25,6 +25,8 @@ spec:
       containers:
       - image:  moficodes/hotel-v1:v1.0.0
         imagePullPolicy: Always
+        ports:
+        - containerPort: 9101
         name:  hotel
         env:
           - name: PORT

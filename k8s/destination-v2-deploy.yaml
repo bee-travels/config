@@ -3,13 +3,13 @@ kind: Deployment
 metadata:
   name:  destination-v2
   labels:
-    run:  destination
+    app:  destination
     version: v2
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run:  destination
+      app:  destination
       version: v2
   strategy:
     rollingUpdate:
@@ -19,12 +19,14 @@ spec:
   template:
     metadata:
       labels:
-        run:  destination
+        app:  destination
         version: v2
     spec:
       containers:
       - image:  beetravels/destination-v2:node-03e4a69a09bdc56ca9676af9355fbf204b48db31
         imagePullPolicy: Always
+        ports:
+        - containerPort: 9001
         name:  destination
         env:
           - name: PORT

@@ -3,13 +3,13 @@ kind: Deployment
 metadata:
   name:  hotel-v2
   labels:
-    run:  hotel
+    app:  hotel
     version: v2
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run:  hotel
+      app:  hotel
       version: v2
   strategy:
     rollingUpdate:
@@ -19,12 +19,14 @@ spec:
   template:
     metadata:
       labels:
-        run:  hotel
+        app:  hotel
         version: v2
     spec:
       containers:
       - image:  beetravels/hotel-v2:node-03e4a69a09bdc56ca9676af9355fbf204b48db31
         imagePullPolicy: Always
+        ports:
+        - containerPort: 9101
         name:  hotel
         env:
           - name: PORT
@@ -33,17 +35,17 @@ spec:
             value: hotel
           - name: SCHEME
             value: http
-          - name: HOTEL_DATABASE
+          - name: DATABASE
             value: mongodb
-          - name: HOTEL_MONGO_CONNECTION_URL
+          - name: MONGO_CONNECTION_URL
             value: mongodb://admin:adminadmin1@059d7ac6-942a-4f24-b2c4-9fd7d0b94865-0.4b2136ddd30a46e9b7bdb2b2db7f8cd0.databases.appdomain.cloud:31653,059d7ac6-942a-4f24-b2c4-9fd7d0b94865-1.4b2136ddd30a46e9b7bdb2b2db7f8cd0.databases.appdomain.cloud:31653/ibmclouddb?authSource=admin&replicaSet=replset&tls=true
-          - name: HOTEL_COUCH_CLOUDANT_CONNECTION_URL
+          - name: COUCH_CLOUDANT_CONNECTION_URL
             value: http://admin:admin@couch:5984
-          - name: HOTEL_PG_HOST
+          - name: PG_HOST
             value: bee-travels-db-postgresql
-          - name: HOTEL_PG_USER
+          - name: PG_USER
             value: postgres
-          - name: HOTEL_PG_PASSWORD
+          - name: PG_PASSWORD
             value: Oyg9YxwKmm
           - name: DATABASE_CERT
             valueFrom:

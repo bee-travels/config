@@ -3,13 +3,13 @@ kind: Deployment
 metadata:
   name:  bee-ui
   labels:
-    run:  bee-ui
+    app:  bee-ui
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run:  bee-ui
+      app:  bee-ui
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -18,7 +18,7 @@ spec:
   template:
     metadata:
       labels:
-        run:  bee-ui
+        app:  bee-ui
         version: v1
     spec:
       containers:
@@ -31,13 +31,13 @@ spec:
           - name: NODE_ENV
             value: production
           - name: DESTINATION_URL
-            value: http://destination
+            value: http://destination:80
           - name: CAR_URL
-            value: http://carrental
+            value: http://carrental:80
           - name: HOTEL_URL
-            value: http://hotel
+            value: http://hotel:80
           - name: CURRENCY_EXCHANGE_URL
-            value: http://currencyexchange
+            value: http://currencyexchange:80
         resources:
           limits:
             cpu: 200m

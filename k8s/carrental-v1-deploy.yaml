@@ -27,8 +27,7 @@ spec:
         imagePullPolicy: Always
         name: carrental
         ports:
-          - containerPort: 9102
-            name: http-moficar
+        - containerPort: 9102
         env:
           - name: PORT
             value: "9102"
