@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  carrental
+  name: carrental
   labels:
-    run:  carrental
+    run: carrental
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run:  carrental
+      run: carrental
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -18,12 +18,12 @@ spec:
   template:
     metadata:
       labels:
-        run:  carrental
+        run: carrental
     spec:
       containers:
-      - image:  beetravels/carrental-v1:node-50d8ef540932c4a925982ba50a7d8f81434e3592
+      - image: beetravels/carrental-v1:node-v1.0.0
         imagePullPolicy: Always
-        name:  carrental
+        name: carrental
         env:
           - name: PORT
             value: "9102"
@@ -31,6 +31,8 @@ spec:
             value: carrental
           - name: SCHEME
             value: http
+          - name: LOG_LEVEL
+            value: info
         resources:
           limits:
             cpu: 200m

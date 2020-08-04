@@ -2,15 +2,15 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name:  {{ .name }}
+  name: {{ .name }}
   labels:
     run: {{ .name }}
 spec:
   selector:
-    run:  {{ .name }}
+    run: {{ .name }}
   type: {{ .type }}
   ports:
   - port: {{ .port }}
     protocol: {{ .protocol }}
-    targetPort:  {{ .targetPort }}
+    targetPort: {{ .targetPort }}
 {{- end}}

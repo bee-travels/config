@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  destination
+  name: destination
   labels:
-    run:  destination
+    run: destination
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run:  destination
+      run: destination
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -18,12 +18,12 @@ spec:
   template:
     metadata:
       labels:
-        run:  destination
+        run: destination
     spec:
       containers:
-      - image:  beetravels/destination-v2:node-50d8ef540932c4a925982ba50a7d8f81434e3592
+      - image: beetravels/destination-v2:node-v1.0.0
         imagePullPolicy: Always
-        name:  destination
+        name: destination
         env:
           - name: PORT
             value: "9001"
@@ -31,17 +31,17 @@ spec:
             value: destination
           - name: SCHEME
             value: http
-          - name: DESTINATION_DATABASE
+          - name: DATABASE
             value: postgres
-          - name: DESTINATION_MONGO_CONNECTION_URL
+          - name: MONGO_CONNECTION_URL
             value: mongodb://admin:admin@mongo:27017
-          - name: DESTINATION_COUCH_CLOUDANT_CONNECTION_URL
+          - name: COUCH_CLOUDANT_CONNECTION_URL
             value: http://admin:admin@couch:5984
-          - name: DESTINATION_PG_HOST
+          - name: PG_HOST
             value: bee-travels-db-postgresql
-          - name: DESTINATION_PG_USER
+          - name: PG_USER
             value: postgres
-          - name: DESTINATION_PG_PASSWORD
+          - name: PG_PASSWORD
             value: Oyg9YxwKmm
         resources:
           limits:

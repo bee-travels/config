@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  hotel
+  name: hotel
   labels:
-    run:  hotel
+    run: hotel
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run:  hotel
+      run: hotel
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -18,12 +18,12 @@ spec:
   template:
     metadata:
       labels:
-        run:  hotel
+        run: hotel
     spec:
       containers:
-      - image:  beetravels/hotel-v1:node-50d8ef540932c4a925982ba50a7d8f81434e3592
+      - image: beetravels/hotel-v1:node-v1.0.0
         imagePullPolicy: Always
-        name:  hotel
+        name: hotel
         env:
           - name: PORT
             value: "9101"
@@ -31,6 +31,8 @@ spec:
             value: hotel
           - name: SCHEME
             value: http
+          - name: LOG_LEVEL
+            value: info            
         resources:
           limits:
             cpu: 200m

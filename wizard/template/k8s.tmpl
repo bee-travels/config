@@ -2,15 +2,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  bee-ui
+  name: bee-ui
   labels:
-    run:  bee-ui
+    run: bee-ui
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run:  bee-ui
+      run: bee-ui
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -19,12 +19,12 @@ spec:
   template:
     metadata:
       labels:
-        run:  bee-ui
+        run: bee-ui
     spec:
       containers:
       - image: bee-travels/ui:{{ .UI.Tag }}
         imagePullPolicy: Always
-        name:  bee-ui
+        name: bee-ui
         env:
           - name: PORT
             value: "9000"
@@ -47,17 +47,17 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name:  bee-ui
+  name: bee-ui
   labels:
     run: bee-ui
 spec:
   selector:
-    run:  bee-ui
-  type:  NodePort
+    run: bee-ui
+  type: NodePort
   ports:
   - port: 80
     protocol: TCP
-    targetPort:  9000
+    targetPort: 9000
 {{- end}}
 {{if .Destination}}  
 
@@ -65,15 +65,15 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  destination
+  name: destination
   labels:
-    run:  destination
+    run: destination
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run:  destination
+      run: destination
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -82,12 +82,12 @@ spec:
   template:
     metadata:
       labels:
-        run:  destination
+        run: destination
     spec:
       containers:
-      - image:  bee-travels/destination:{{ .Destination.Tag }}
+      - image: bee-travels/destination:{{ .Destination.Tag }}
         imagePullPolicy: Always
-        name:  destination
+        name: destination
         env:
           - name: PORT
             value: "9001"
@@ -108,17 +108,17 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name:  destination
+  name: destination
   labels:
     run: destination
 spec:
   selector:
-    run:  destination
-  type:  ClusterIP
+    run: destination
+  type: ClusterIP
   ports:
   - port: 80
     protocol: TCP
-    targetPort:  9001
+    targetPort: 9001
 {{- end}}
 {{if .Hotel}}  
 
@@ -126,15 +126,15 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  hotel
+  name: hotel
   labels:
-    run:  hotel
+    run: hotel
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run:  hotel
+      run: hotel
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -143,12 +143,12 @@ spec:
   template:
     metadata:
       labels:
-        run:  hotel
+        run: hotel
     spec:
       containers:
-      - image:  bee-travels/hotel:/{{ .Hotel.Tag }}
+      - image: bee-travels/hotel:/{{ .Hotel.Tag }}
         imagePullPolicy: Always
-        name:  hotel
+        name: hotel
         env:
           - name: PORT
             value: "9101"
@@ -169,17 +169,17 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name:  hotel
+  name: hotel
   labels:
     run: hotel
 spec:
   selector:
-    run:  hotel
-  type:  ClusterIP
+    run: hotel
+  type: ClusterIP
   ports:
   - port: 80
     protocol: TCP
-    targetPort:  9101
+    targetPort: 9101
 {{- end}}
 {{if .Currencyexchange}}  
 
@@ -187,15 +187,15 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  currencyexchange
+  name: currencyexchange
   labels:
-    run:  currencyexchange
+    run: currencyexchange
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run:  currencyexchange
+      run: currencyexchange
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -204,10 +204,10 @@ spec:
   template:
     metadata:
       labels:
-        run:  currencyexchange
+        run: currencyexchange
     spec:
       containers:
-      - image:  bee-travels/currencyexchange:{{ .Currencyexchange.Tag }}
+      - image: bee-travels/currencyexchange:{{ .Currencyexchange.Tag }}
         imagePullPolicy: Always
         name: currencyexchange
         env:
@@ -230,15 +230,15 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name:  currencyexchange
+  name: currencyexchange
   labels:
     run: currencyexchange
 spec:
   selector:
-    run:  currencyexchange
-  type:  ClusterIP
+    run: currencyexchange
+  type: ClusterIP
   ports:
   - port: 80
     protocol: TCP
-    targetPort:  9202
+    targetPort: 9202
 {{- end}}

@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  flights
+  name: flights
   labels:
-    run:  flights
+    run: flights
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run:  flights
+      run: flights
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -18,12 +18,12 @@ spec:
   template:
     metadata:
       labels:
-        run:  flights
+        run: flights
     spec:
       containers:
-      - image:  beetravels/flights-v2:node-50d8ef540932c4a925982ba50a7d8f81434e3592
+      - image: beetravels/flights-v2:node-v1.0.0
         imagePullPolicy: Always
-        name:  flights
+        name: flights
         env:
           - name: PORT
             value: "9103"
@@ -31,17 +31,17 @@ spec:
             value: flights
           - name: SCHEME
             value: http
-          - name: FLIGHTS_DATABASE
+          - name: DATABASE
             value: postgres
-          - name: FLIGHTS_MONGO_CONNECTION_URL
+          - name: MONGO_CONNECTION_URL
             value: mongodb://admin:admin@mongo:27017
-          - name: FLIGHTS_COUCH_CLOUDANT_CONNECTION_URL
+          - name: COUCH_CLOUDANT_CONNECTION_URL
             value: http://admin:admin@couch:5984
-          - name: FLIGHTS_PG_HOST
+          - name: PG_HOST
             value: bee-travels-db-postgresql
-          - name: FLIGHTS_PG_USER
+          - name: PG_USER
             value: postgres
-          - name: FLIGHTS_PG_PASSWORD
+          - name: PG_PASSWORD
             value: Oyg9YxwKmm
         resources:
           limits:

@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  currencyexchange
+  name: currencyexchange
   labels:
-    run:  currencyexchange
+    run: currencyexchange
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run:  currencyexchange
+      run: currencyexchange
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -18,10 +18,10 @@ spec:
   template:
     metadata:
       labels:
-        run:  currencyexchange
+        run: currencyexchange
     spec:
       containers:
-      - image:  beetravels/currencyexchange:node-50d8ef540932c4a925982ba50a7d8f81434e3592
+      - image: beetravels/currencyexchange:node-v1.0.0
         imagePullPolicy: Always
         name: currencyexchange
         env:

@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  bee-ui
+  name: bee-ui
   labels:
-    run:  bee-ui
+    run: bee-ui
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run:  bee-ui
+      run: bee-ui
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -18,12 +18,12 @@ spec:
   template:
     metadata:
       labels:
-        run:  bee-ui
+        run: bee-ui
     spec:
       containers:
-      - image:  beetravels/ui:node-50d8ef540932c4a925982ba50a7d8f81434e3592
+      - image: beetravels/ui:node-v1.0.0
         imagePullPolicy: Always
-        name:  bee-ui
+        name: bee-ui
         env:
           - name: PORT
             value: "9000"

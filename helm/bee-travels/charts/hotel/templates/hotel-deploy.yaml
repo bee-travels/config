@@ -10,7 +10,7 @@ spec:
   replicas: {{ .Values.deployment.replicas }}
   selector:
     matchLabels:
-      run:  {{ .Values.deployment.name }}
+      run: {{ .Values.deployment.name }}
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -19,10 +19,10 @@ spec:
   template:
     metadata:
       labels:
-        run:  {{ .Values.deployment.name }}
+        run: {{ .Values.deployment.name }}
     spec:
       containers:
-      - image:  {{ .Values.deployment.image }}:{{ .Values.global.tag }}
+      - image: {{ .Values.deployment.image }}:{{ .Values.global.tag }}
         imagePullPolicy: Always
         name: {{ .Values.deployment.name }}
         env:
