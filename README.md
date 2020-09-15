@@ -63,12 +63,37 @@ From your OpenShift dashboard, locate your login command as seen in the below sc
 
 ![](readme-images/openshift-login.jpg)
 
-Once you are logged in and configured to your OpenShift cluster, run the following:
+##### v1
+
+Options:
+* -c = cluster name on IBM Cloud (No flag value = no route created by default)
+* -p = want to create new project (Y/y values)
 
 ```sh
 git clone https://github.com/bee-travels/config.git
 cd config
-./deploy-openshift.sh
+./deploy-openshift-v1.sh -c <CLUSTER_NAME> -p y
+```
+
+For deploying v1 to OpenShift on IBM Z (LinuxOne Community Cloud) run the following script:
+
+```sh
+git clone https://github.com/bee-travels/config.git
+cd config
+./deploy-openshift-v1-z.sh
+```
+
+##### v2
+
+Options:
+* -c = cluster name on IBM Cloud (No flag value = no route created by default)
+* -p = want to create new project (Y/y values)
+* -d = database operator (postgres/mongodb/couchdb values)
+
+```sh
+git clone https://github.com/bee-travels/config.git
+cd config
+./deploy-openshift-v2.sh -c <CLUSTER_NAME> -p y -d <DATABASE>
 ```
 
 ## License
