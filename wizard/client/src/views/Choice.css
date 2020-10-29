@@ -14,3 +14,8 @@
 .radio-toolbar input[type="radio"]:checked+label {
   background-color: #bbb;
 }
+
+.required {
+  color: red;
+  font-size: small;
+}

@@ -1,20 +1,19 @@
 package main
 
 type Config struct {
-	Deployment       string           `json:"deployment"`
-	Version          string           `json:"version"`
-	UI               UI               `json:"ui"`
-	Destination      Destination      `json:"destination"`
-	Hotel            Hotel            `json:"hotel"`
-	Currencyexchange Currencyexchange `json:"currencyexchange"`
-	Cart             Cart             `json:"cart"`
-	Payment          Payment          `json:"payment"`
-	Checkout         Checkout         `json:"checkout"`
-	Email            Email            `json:"email"`
-	Carrental        Carrental        `json:"carrental"`
-	Flight           Flight           `json:"flight"`
-	Weather          Weather          `json:"weather"`
-	Message          Message          `json:"message"`
+	Deployment       string            `json:"deployment",omitempty`
+	Version          string            `json:"version",omitempty`
+	UI               *UI               `json:"ui",omitempty`
+	Destination      *Destination      `json:"destination",omitempty`
+	Hotel            *Hotel            `json:"hotel",omitempty`
+	Currencyexchange *Currencyexchange `json:"currencyexchange",omitempty`
+	Cart             *Cart             `json:"cart",omitempty`
+	Payment          *Payment          `json:"payment",omitempty`
+	Checkout         *Checkout         `json:"checkout",omitempty`
+	Email            *Email            `json:"email",omitempty`
+	Carrental        *Carrental        `json:"carrental",omitempty`
+	Flight           *Flight           `json:"flight",omitempty`
+	Message          *Message          `json:"message",omitempty`
 }
 type UI struct {
 	Service string `json:"service"`
@@ -53,10 +52,6 @@ type Carrental struct {
 	Tag     string `json:"tag"`
 }
 type Flight struct {
-	Service string `json:"service"`
-	Tag     string `json:"tag"`
-}
-type Weather struct {
 	Service string `json:"service"`
 	Tag     string `json:"tag"`
 }

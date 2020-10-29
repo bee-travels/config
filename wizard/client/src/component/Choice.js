@@ -1,10 +1,10 @@
 import React from "react";
 
-const Choice = ({ label, data, onChange }) => {
+const Choice = ({ label, data, onChange, required }) => {
   return (
     <div className="ui raised segment">
       <div className="ui form">
-        <h2 className="ui header">{label}</h2>
+        {required ? <h2 className="ui header">{label} <span class="required">*Required</span></h2> : <h2 className="ui header">{label}</h2> }
         <div className="inline fields">
           {data.map((v, i) => (
             <div className="field" key={i}>
@@ -16,7 +16,7 @@ const Choice = ({ label, data, onChange }) => {
                   type="radio"
                   id={i}
                   name={label}
-                  value={v.value}
+                  value={v.id || v.value}
                   disabled={v.disabled}
                 />
 

@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"text/template"
@@ -14,6 +15,8 @@ func k8sConfigHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println("could not ready body")
 	}
+
+	fmt.Printf("%+v\n", body)
 
 	tmpl := template.Must(template.ParseFiles("template/k8s.tmpl"))
 	err = tmpl.Execute(w, body)
