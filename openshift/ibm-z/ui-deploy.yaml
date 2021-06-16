@@ -37,7 +37,7 @@ spec:
     spec:
       containers:
         - name: ui
-          image: maxshapiro32/ui:latest
+          image: beetravels/ui:node-z
           ports:
             - containerPort: 9000
               protocol: TCP

@@ -37,7 +37,7 @@ spec:
     spec:
       containers:
         - name: hotel-v1
-          image: maxshapiro32/hotel-v1:latest
+          image: beetravels/hotel-v1:node-z
           ports:
             - containerPort: 9101
               protocol: TCP

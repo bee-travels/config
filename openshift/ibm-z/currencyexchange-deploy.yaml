@@ -37,7 +37,7 @@ spec:
     spec:
       containers:
         - name: currencyexchange
-          image: maxshapiro32/currencyexchange:latest
+          image: beetravels/currencyexchange:node-z
           ports:
             - containerPort: 9201
               protocol: TCP

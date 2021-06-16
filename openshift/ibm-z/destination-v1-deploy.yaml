@@ -37,7 +37,7 @@ spec:
     spec:
       containers:
         - name: destination-v1
-          image: maxshapiro32/destination-v1:latest
+          image: beetravels/destination-v1:node-z
           ports:
             - containerPort: 9001
               protocol: TCP
